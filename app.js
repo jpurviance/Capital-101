@@ -6,7 +6,7 @@ var api = express();
 
 require("./routes/api")(api);
 
-api.listen(8080, function () {
+api.listen(3000, function () {
     console.log("started on 8080");
 
 });
