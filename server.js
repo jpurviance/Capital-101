@@ -1,12 +1,14 @@
 var express = require('express');
+var routes = require('./routes');
 // TODO include server specific config here
 
 
-var api = express();
+var app = express();
+//initializes routing for angular application
+require('./routes/index')(app);
 
-require("./routes/api")(api);
 var port = (process.env.PORT || 8080);
-api.listen(port, function () {
+app.listen(port, function () {
     console.log("started on " + port);
 
 });
