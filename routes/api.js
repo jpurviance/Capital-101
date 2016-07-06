@@ -4,7 +4,7 @@ function Route(warehouse) {
     var costco = warehouse;
 
     var new_user = ["name", "email", "password", "profilePicture", "type", "fb_token"];
-    var get_user = ["id"]
+    var get_user = ["token", "user"];
     
     function valid_add_user(jsn) {
         for (var i = 0; i < new_user.length; i++){
@@ -99,7 +99,9 @@ function Route(warehouse) {
         var body = req.body;
         if (body.token){
             if (valid_get_user(body)){
-                res.json({});
+                costco.find(body.user, function (err, doc) {
+                    console.log(doc);
+                });
             }
         } else {
             res.json({

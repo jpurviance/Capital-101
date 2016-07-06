@@ -27,6 +27,10 @@ var Warehouse = function(){
 
     var person = mongoose.model('person', UserSchema);
 
+    this.find = function (user, callback) {
+        person.find({_id: user}, callback(err, docs));
+    }
+
     this.new_person = function (doc, callback) {
         var p = new person(doc);
         p.save(callback);
