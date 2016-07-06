@@ -1,0 +1,23 @@
+{
+  "name": "capital-100",
+  "description": "carbon",
+  "main": "",
+  "authors": [
+    "wrk224 <jaiden.gerig@capitalone.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/salim-memon/Capital-100",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "bootstrap": "^3.3.6",
+    "angular-route": "^1.5.7",
+    "angular-resource": "^1.5.7"
+  }
+}
