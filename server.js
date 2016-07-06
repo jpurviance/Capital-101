@@ -11,6 +11,6 @@ mongUtil.connectToServer(function () {
     require('./routes/index')(app)
     app.listen(port, function () {
         console.log("started on " + port);
-
+//
     });
 });

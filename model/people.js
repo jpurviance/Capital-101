@@ -22,8 +22,7 @@ var Warehouse = function(){
         password: String,
         profilePicture: String,
         type: String,
-        id: String,
-        fb_token: String,
+        fb_token: String
     }, { collection: 'people' });
 
     var person = mongoose.model('person', UserSchema);
