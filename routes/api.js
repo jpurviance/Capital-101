@@ -100,7 +100,17 @@ function Route(warehouse) {
         if (body.token){
             if (valid_get_user(body)){
                 costco.find(body.user, function (err, doc) {
-                    console.log(doc);
+                    if (err){
+                        console.log(err);
+                        res.status(500);
+                        res.json({status: err});
+                    } else {
+                        var ret = {
+                            status: "NO_ERR",
+                            user: doc
+                        }
+                        res.json(ret);
+                    }
                 });
             }
         } else {
