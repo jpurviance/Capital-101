@@ -5,8 +5,8 @@ var express = require('express');
 var api = express();
 
 require("./routes/api")(api);
-
-api.listen(3000, function () {
-    console.log("started on 8080");
+var port = (process.env.PORT || 5000)
+api.listen(port, function () {
+    //console.log("started on 8080");
 
 });
