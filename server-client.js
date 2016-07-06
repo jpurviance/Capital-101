@@ -18,7 +18,7 @@ app.use(session({
     }
 }));
 
-app.post('/api/user/login', function(req, res) {
+app.post('/login', function(req, res) {
     User.findOne({ email: req.body.email }, function(err, user) {
         if (!user) {
             res.render('login.jade', { error: 'Invalid email or password.' });
@@ -26,7 +26,7 @@ app.post('/api/user/login', function(req, res) {
             if (req.body.password === user.password) {
                 // sets a cookie with the user's info
                 req.session.user = user;
-                res.redirect('/api/user/dashboard');
+                res.redirect('/dashboard');
             } else {
                 res.render('login.jade', { error: 'Invalid email or password.' });
             }
@@ -34,7 +34,7 @@ app.post('/api/user/login', function(req, res) {
     });
 });
 
-app.get('/api/user/dashboard', function(req, res) {
+app.get('/dashboard', function(req, res) {
     if (req.session && req.session.user) { // Check if session exists
         // lookup the user in the DB by pulling their email from the session
         User.findOne({ email: req.session.user.email }, function (err, user) {
@@ -42,7 +42,7 @@ app.get('/api/user/dashboard', function(req, res) {
                 // if the user isn't found in the DB, reset the session info and
                 // redirect the user to the login page
                 req.session.reset();
-                res.redirect('/api/user/login');
+                res.redirect('/login');
             } else {
                 // expose the user to the template
                 res.locals.user = user;
@@ -52,7 +52,7 @@ app.get('/api/user/dashboard', function(req, res) {
             }
         });
     } else {
-        res.redirect('/api/user/login');
+        res.redirect('/login');
     }
 });
 
@@ -77,18 +77,18 @@ app.use(function(req, res, next) {
 
 function requireLogin (req, res, next) {
     if (!req.user) {
-        res.redirect('/api/user/login');
+        res.redirect('/login');
     } else {
         next();
     }
 };
 
 
-app.get('/api/user/dashboard', requireLogin, function(req, res) {
+app.get('/dashboard', requireLogin, function(req, res) {
     res.render('dashboard.jade');
 });
 
-app.get('/api/user/logout', function(req, res) {
+app.get('/logout', function(req, res) {
     req.session.reset();
     res.redirect('/');
 });
