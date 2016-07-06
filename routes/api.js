@@ -4,6 +4,7 @@ function Route(warehouse) {
     var costco = warehouse;
 
     var new_user = ["name", "email", "password", "profilePicture", "type", "fb_token"];
+    var get_user = ["id"]
     
     function valid_add_user(jsn) {
         for (var i = 0; i < new_user.length; i++){
@@ -13,6 +14,16 @@ function Route(warehouse) {
         }
         return true;
         
+    }
+
+    function valid_get_user(jsn) {
+        for (var i = 0; i < get_user.length; i++){
+            if (! get_user[i] in jsn){
+                return false;
+            }
+
+        }
+        return true;
     }
 
     this.hello_world = function (req, res) {
@@ -74,6 +85,30 @@ function Route(warehouse) {
             });
         }
     }
+
+
+
+    /*
+    {
+     token: 42,
+     user: "id"
+    }
+
+     */
+    this.get_user = function (req, res) {
+        var body = req.body;
+        if (body.token){
+            if (valid_get_user(body)){
+                res.json({});
+            }
+        } else {
+            res.json({
+                status: "NO_AUTH",
+            });
+        }
+
+
+    }
 }
 
 
@@ -90,4 +125,5 @@ module.exports = function(app, Warehouse){
     app.get('/api/',  route.hello_world);
     
     app.post('/api/user/create', route.new_user);
+    app.get('/api/user/', route.get_user);
 }
