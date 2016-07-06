@@ -3,7 +3,7 @@
 function Route(/* pass warehouse*/) {
     this.hello_world = function (req, res) {
         res.json({
-            Status: "works"
+            Status: process.env.MONGODB_URI
         });
 
     }
