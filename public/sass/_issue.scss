@@ -1,0 +1,16 @@
+.appt{
+  text-align:center;
+  &__user{
+
+  }
+  &__category{
+    font-size: 32px;
+  }
+  &__notes{
+    margin-bottom: 20px;
+  }
+  &__resolve{
+    width:200px;
+    height:45px;
+  }
+}

@@ -28,6 +28,15 @@
 .user{
   &__name{
     font-size: 32px;
+    &--big{
+      font-size: 50px;
+    }
+  }
+  &__pic{
+    &--center{
+      width: 200px !important;
+      height: 200px !important;
+    }
   }
 }
 .round {
