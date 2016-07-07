@@ -35,8 +35,8 @@ var Warehouse = function(){
         });
     };
 
-    this.find_by_id = function (user, callback) {
-        person.findOne({_id: user}, function (err, docs) {
+    this.find_by_id = function (id, callback) {
+        person.findById(id, function (err, docs) {
             return callback(err, docs);
         });
     };
@@ -47,7 +47,10 @@ var Warehouse = function(){
 
     this.new_person = function (doc, callback) {
         var p = new person(doc);
-        p.save(callback);
+        p.save(function (err, doc) {
+            callback(err, doc);
+
+        });
     }
 };
 

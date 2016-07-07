@@ -4,9 +4,9 @@ function Route(warehouse, jobs) {
     var costco = warehouse;
     var in_line = jobs;
 
-    var new_user = ["name", "email", "password", "profilePicture", "type", "fb_token"];
+    var new_user = ["name", "email", "password", "profilePicture", "type"]; // TODO do not have fb user
     var get_user = ["token", "user"];
-    var auth_user = ["email", "password", "fb_token"];
+    var auth_user = ["email", "password"];
     var new_issue = ["type", "customer_id", "ambassador_id", "finished", "rating", "notes"];
     
     function valid_add_user(jsn) {
@@ -59,11 +59,19 @@ function Route(warehouse, jobs) {
     this.get_issue_by_customer = function (req, res) {
         var body = req.body;
         if (body.token = 42){
-            var ret = {
-                status: "NO_ERR",
-                issue: costco.find_by_id()
-            };
-            res.json(ret);
+             var issue = in_line.get_by_id(body.customer_id);
+            if (issue == null){
+                var err = "issue not found"
+                console.log(err);
+                res.json({status: err});
+            }else {
+                var ret = {
+                    status: "NO_ERR",
+                    issue: issue
+                };
+                res.json(ret);
+
+            }
         } else {
             res.json({
                 status: "NO_AUTH"
@@ -193,7 +201,7 @@ function Route(warehouse, jobs) {
     {
         email: "email@email.com",
         token: 42,
-        password: "password",
+        password: "password"
     }
     * */
     this.auth = function (req, res) {
@@ -237,8 +245,7 @@ function Route(warehouse, jobs) {
             email: "my_email@email.com",
             password: "my_secret_password",
             profilePicture: "url",
-            type: "type",
-            fb_token: "token"
+            type: "type"
             }
         }
     }
@@ -248,13 +255,14 @@ function Route(warehouse, jobs) {
         if (body.token == 42){
             if (valid_add_user(body.user)) {
                 costco.find_by_email(body.user.email, function (err, doc) {
-                    if (err){
+                    if (err || doc == null){
                         costco.new_person(body.user, function (err, record) {
                             if (err){
                                 console.log(err);
                                 res.status(500);
                                 res.json({status: err});
                             } else {
+
                                 var ret = {
                                     status: "NO_ERR",
                                     user: record
@@ -263,6 +271,8 @@ function Route(warehouse, jobs) {
                             }
                         });
                     } else {
+                        console.log()
+                        console.log("here");
                         var ret = {
                             status: "NO_ERR",
                             user: doc
