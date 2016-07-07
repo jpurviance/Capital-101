@@ -61,7 +61,7 @@ function Route(warehouse, jobs) {
         if (body.token = 42){
             var ret = {
                 status: "NO_ERR",
-                issue: costco.get_by_id()
+                issue: costco.find_by_id()
             };
             res.json(ret);
         } else {
