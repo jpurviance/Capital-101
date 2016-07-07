@@ -2,11 +2,12 @@
 
 function Route(warehouse, jobs) {
     var costco = warehouse;
-    var in_lin = jobs;
+    var in_line = jobs;
 
     var new_user = ["name", "email", "password", "profilePicture", "type", "fb_token"];
     var get_user = ["token", "user"];
     var auth_user = ["email", "password", "fb_token"];
+    var new_issue = ["type", "customer", "ambassador", "finished", "rating", "notes"];
     
     function valid_add_user(jsn) {
         for (var i = 0; i < new_user.length; i++){
@@ -38,24 +39,51 @@ function Route(warehouse, jobs) {
         return true;
     }
 
-    // this.hello_world = function (req, res) {
-    //     costco.new_person({
-    //         name: "foo",
-    //         email: "foo",
-    //         password: "foo",
-    //         profilePicture: "foo",
-    //         type: "foo",
-    //         id: "foo",
-    //         fb_token: "foo"
-    //     }, function (err, record) {
-    //         if (err){
-    //             console.log(err);
-    //         }
-    //         res.json(record);
-    //     });
-    //
-    // }
+    function valid_issue(jsn) {
+        for (var i = 0; i < new_issue.length; i++){
+            if(!new_issue[i] in jsn){
+                return false
+            }
 
+        }
+        return true;
+    }
+
+
+    /*
+     {
+        token: 42,
+        help:{
+            type: "Checking",
+            info: "My Grandson says i need one a them credit cards",
+            customer_id: "id",
+            ambassador_id: "id",
+            finished: boolean,
+            rating: int,
+            notes: "Needed a credit card"
+        }
+     }
+    * */
+    this.add_to_line = function (req, res) {
+        var body = req.body;
+        if (body.token == 42){
+            if (valid_issue(body.help)){
+                // TODO I do not check that the fields are set, just that they are there.
+                in_line.get_in_line(body.help);
+                res.json({
+                    status:"NO_ERR",
+                    help: body.help,
+                });
+            } else {
+                res.status(400);
+                res.json({status: "BAD_REQUEST"});
+            }
+        } else {
+            res.json({
+                status: "NO_AUTH",
+            });
+        }
+    }
 
 
     /*
@@ -215,10 +243,10 @@ module.exports = function(app, Warehouse){
     }));
     var route = new Route(Warehouse, new line());
 
-    // app.get('/api/',  route.hello_world);
     
     app.post('/api/user/create', route.new_user);
     app.post('/api/user', route.get_user);
     app.post('/api/user/auth', route.auth);
     app.post('/api/line', route.who_is_next);
+    app.post("/api/add_issue", route.add_to_line);
 }

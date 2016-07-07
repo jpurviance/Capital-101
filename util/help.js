@@ -1,4 +1,14 @@
 function help_me() {
+
+    //{type:"Checking",
+    // info:"My Grandson says i need one a them credit cards",
+    // customer_id:25,
+    // ambassador_id:37,
+    // finished:false,
+    // rating:3,
+    // notes:"Needed a credit card"}
+
+
     var help = [];
 
     this.get_next = function () {
