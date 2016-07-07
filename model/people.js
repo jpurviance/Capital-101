@@ -36,7 +36,7 @@ var Warehouse = function(){
     };
 
     this.find_by_id = function (user, callback) {
-        person.findOne({_id: user}, function (err, docs) {
+        person.findOne({cusotmer_id: user}, function (err, docs) {
             return callback(err, docs);
         });
     };
