@@ -206,10 +206,10 @@ function Route(warehouse, jobs) {
                         res.json({status: "BAD_AUTH"});
                     } else {
                         if (doc.password == body.password){
-                            ret = {
+                            var ret = {
                                 status: "NO_ERR",
                                 user: doc,
-                            }
+                            };
                             res.json(ret);
                         } else {
                             res.json({status: "BAD_AUTH"});
@@ -246,16 +246,26 @@ function Route(warehouse, jobs) {
         var body = req.body;
         if (body.token == 42){
             if (valid_add_user(body.user)) {
-                costco.new_person(body.user, function (err, record) {
+                ostco.find_by_email(body.user.email, function (err, doc) {
                     if (err){
-                        console.log(err);
-                        res.status(500);
-                        res.json({status: err});
+                        costco.new_person(body.user, function (err, record) {
+                            if (err){
+                                console.log(err);
+                                res.status(500);
+                                res.json({status: err});
+                            } else {
+                                var ret = {
+                                    status: "NO_ERR",
+                                    user: record
+                                }
+                                res.json(ret);
+                            }
+                        });
                     } else {
                         var ret = {
                             status: "NO_ERR",
-                            user: record
-                        }
+                            user: doc,
+                        };
                         res.json(ret);
                     }
                 });

@@ -28,6 +28,7 @@ var Warehouse = function(){
     var person = mongoose.model('person', UserSchema);
 
 
+    // This assumes that the user exists. 
     this.find_by_email = function (eml, callback) {
         person.findOne({email: eml}, function (err, docs) {
             return callback(err, docs);
