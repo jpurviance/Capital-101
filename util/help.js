@@ -24,7 +24,7 @@ function help_me() {
 
     this.get_in_line = function (add_me) {
         for (var i = 0; i < help.length; i++){
-            if (help[i].customer_id == 108852546216429){
+            if (help[i].customer_id == "577e775932d3841100d88049"){
                 return;
             }
         }
