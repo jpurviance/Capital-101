@@ -72,7 +72,7 @@ function Route(warehouse, jobs) {
                 in_line.get_in_line(body.help);
                 res.json({
                     status:"NO_ERR",
-                    help: body.help,
+                    help: body.help
                 });
             } else {
                 res.status(400);
@@ -91,7 +91,7 @@ function Route(warehouse, jobs) {
         token: 42
     }
     * */
-    this.who_is_next = function (req, res) {
+    this.all_in_line = function (req, res) {
         var body = req.body;
         if (body.token == 42){
             res.json({
@@ -247,6 +247,6 @@ module.exports = function(app, Warehouse){
     app.post('/api/user/create', route.new_user);
     app.post('/api/user', route.get_user);
     app.post('/api/user/auth', route.auth);
-    app.post('/api/line', route.who_is_next);
+    app.post('/api/line', route.all_in_line);
     app.post("/api/add_issue", route.add_to_line);
 }
