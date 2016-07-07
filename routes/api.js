@@ -63,7 +63,48 @@ function Route(warehouse, jobs) {
                 status: "NO_AUTH",
             });
         }
-    }
+    };
+
+
+
+    /*
+     {
+        token: 42,
+        help:{
+        type: "Checking",
+        info: "My Grandson says i need one a them credit cards",
+        customer_id: "id",
+        ambassador_id: "id",
+        finished: boolean,
+        rating: int,
+        notes: "Needed a credit card"
+        }
+     }
+     * */
+    this.update_line = function (req, res){
+        var body = req.body;
+        if (body.token == 42){
+            if (valid_issue(body.help)){
+                if (in_line.update_issue(body.help)) {
+                    res.json({
+                        status: "NO_ERR"
+                    });
+                } else {
+                    res.json({
+                        status: "NOT_IN_LINE"
+                    });
+                }
+            } else {
+                res.status(400);
+                res.json({status: "BAD_REQUEST"});
+            }
+        } else {
+            res.json({
+                status: "NO_AUTH",
+            });
+        }
+    };
+
 
     /*
      {
@@ -98,7 +139,7 @@ function Route(warehouse, jobs) {
                 status: "NO_AUTH",
             });
         }
-    }
+    };
 
 
     /*
@@ -118,7 +159,7 @@ function Route(warehouse, jobs) {
                 status: "NO_AUTH"
             });
         }
-    }
+    };
 
 
     /* TODO does not support facebook
@@ -158,7 +199,7 @@ function Route(warehouse, jobs) {
                 status: "NO_AUTH",
             });
         }
-    }
+    };
 
 
     /*
@@ -201,7 +242,7 @@ function Route(warehouse, jobs) {
                 status: "NO_AUTH",
             });
         }
-    }
+    };
 
 
 
@@ -265,4 +306,5 @@ module.exports = function(app, Warehouse){
     app.post('/api/line', route.all_in_line);
     app.post("/api/add_issue", route.add_to_line);
     app.post("/api/get_next", route.who_is_next);
+    app.post("/api/update_line", route.update_line);
 }
