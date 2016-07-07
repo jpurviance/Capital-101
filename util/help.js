@@ -29,4 +29,4 @@ function help_me() {
     }
 }
 
-model.exports = help_me;
+module.exports = help_me;

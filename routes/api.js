@@ -50,6 +50,21 @@ function Route(warehouse, jobs) {
     }
 
 
+    this.who_is_next = function (req, res) {
+        var body = req.body;
+        if (body.token == 42){
+            var ret = {
+                status:"NO_ERR",
+                help: in_line.get_next()
+            }
+            res.json(ret);
+        } else {
+            res.json({
+                status: "NO_AUTH",
+            });
+        }
+    }
+
     /*
      {
         token: 42,
@@ -249,4 +264,5 @@ module.exports = function(app, Warehouse){
     app.post('/api/user/auth', route.auth);
     app.post('/api/line', route.all_in_line);
     app.post("/api/add_issue", route.add_to_line);
+    app.post("/api/get_next", route.who_is_next);
 }
