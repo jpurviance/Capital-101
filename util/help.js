@@ -48,7 +48,7 @@ function help_me() {
             }
         }
         return null;
-    }
+    };
 }
 
 module.exports = help_me;

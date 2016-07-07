@@ -19,9 +19,10 @@ component('issue', {
             if(!$scope.cache.get("user")){
                 $location.path('login');
             }
+            
             $scope.logOut = function () {
                 $scope.cache.put("user",null);
-            }
+            };
             $scope.issue = {id:$routeParams.issueId};
         }
     ]

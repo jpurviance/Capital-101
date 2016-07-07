@@ -29,7 +29,7 @@ component('login', {
                     },function(res){
                         console.log('an error ocurred');
                         console.log(res);
-                    })
+                    });
                 }
                 else{
                     console.log("Form Invalid");

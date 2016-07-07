@@ -42,7 +42,7 @@ function Route(warehouse, jobs) {
     function valid_issue(jsn) {
         for (var i = 0; i < new_issue.length; i++){
             if(!(new_issue[i] in jsn)){
-                return false
+                return false;
             }
 
         }
@@ -61,7 +61,7 @@ function Route(warehouse, jobs) {
         if (body.token = 42){
              var issue = in_line.get_by_id(body.customer_id);
             if (issue == null){
-                var err = "issue not found"
+                var err = "issue not found";
                 console.log(err);
                 res.json({status: err});
             }else {
@@ -271,7 +271,7 @@ function Route(warehouse, jobs) {
                             }
                         });
                     } else {
-                        console.log()
+                        console.log();
                         console.log("here");
                         var ret = {
                             status: "NO_ERR",
@@ -330,7 +330,7 @@ function Route(warehouse, jobs) {
         }
 
 
-    }
+    };
 }
 
 
