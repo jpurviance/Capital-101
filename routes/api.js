@@ -56,21 +56,33 @@ function Route(warehouse) {
     // }
 
 
+
+    /* TODO does not support facebook
+    {
+        user: "username",
+        token: 42,
+        password: "password",
+    }
+    * */
     this.auth = function (req, res) {
         var body = req.body;
         if (body.token == 42){
             if (valid_auth(body)){
-                costco.find(body.user, function (err, doc) {
+                costco.find_by_username(body.user, function (err, doc) {
                     if (err){
                         console.log(err);
                         res.status(500);
-                        res.json({status: err});
+                        res.json({status: "BAD_AUTH"});
                     } else {
-                        var ret = {
-                            status: "NO_ERR",
-                            user: doc
+                        if (doc.password == body.password){
+                            ret = {
+                                status: "NO_ERR",
+                                user: doc,
+                            }
+                            res.json(ret);
+                        } else {
+                            res.json({status: "BAD_AUTH"});
                         }
-                        res.json(ret);
                     }
                 });
             } else {
@@ -140,7 +152,7 @@ function Route(warehouse) {
         var body = req.body;
         if (body.token){
             if (valid_get_user(body)){
-                costco.find(body.user, function (err, doc) {
+                costco.find_by_id(body.user, function (err, doc) {
                     if (err){
                         console.log(err);
                         res.status(500);
