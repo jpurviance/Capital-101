@@ -59,11 +59,18 @@ function Route(warehouse, jobs) {
     this.get_issue_by_customer = function (req, res) {
         var body = req.body;
         if (body.token = 42){
-            var ret = {
-                status: "NO_ERR",
-                issue: costco.find_by_id()
-            };
-            res.json(ret);
+            costco.find_by_id(body.customer_id, function (err, doc) {
+                if (err){
+                    console.log(err);
+                    res.json({status: err});
+                } else {
+                    var ret = {
+                        status: "NO_ERR",
+                        issue: doc
+                    };
+                    res.json(ret);
+                }
+            });
         } else {
             res.json({
                 status: "NO_AUTH"
