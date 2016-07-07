@@ -293,8 +293,10 @@ module.exports = function(app, Warehouse){
     var line =  require("../util/help");
 
     var bodyParser = require("body-parser");
-    app.use(bodyParser.json());
+
+    app.use(bodyParser.json({limit: '300mb'}));
     app.use(bodyParser.urlencoded({
+        limit: '300mb',
         extended: true
     }));
     var route = new Route(Warehouse, new line());
