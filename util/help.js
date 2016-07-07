@@ -18,15 +18,26 @@ function help_me() {
             return null;
         }
 
-    }
+    };
 
     this.get_in_line = function (add_me) {
         help.unshift(add_me);
-    }
+    };
 
     this.get_all = function (){
         return help;
-    }
+    };
+
+    this.update_issue = function (iss) {
+        for (var i = 0; i < help.length; i++){
+            if (help[i] == iss.customer_id){
+                help[i] = iss;
+                return true;
+            }
+        }
+        return false;
+
+    };
 }
 
 module.exports = help_me;
