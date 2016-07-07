@@ -8,9 +8,9 @@ angular.
 module('signup').
 component('signup', {
     templateUrl: 'partials/signup',
-    controller: ['$scope','$location',
-        function signupController($scope,$location) {
-            $scope.user={name:'',email:'',password:'',profilepic:''};
+    controller: ['$scope','$location','$http',
+        function signupController($scope,$location,$http) {
+            $scope.user={name:'',email:'',password:'',profilePicture:'',type:'ambassador'};
 
             $scope.video = document.getElementById("video");
             var videoObj = { "video": true };
@@ -42,12 +42,16 @@ component('signup', {
                 canvas.height = video.videoHeight;
                 canvas.getContext('2d')
                     .drawImage($scope.video, 0, 0, canvas.width, canvas.height);
-                $scope.user.profilepic = canvas.toDataURL();
+                $scope.user.profilePicture = canvas.toDataURL();
             };
             $scope.submitForm = function() {
                 // check to make sure the form is completely valid
                 if ($scope.signupForm.$valid) {
-                    $location.path( 'required-documents' );
+                    $http.post('/api/user/create', {token:42,user:$scope.user}).then(function(res){
+                        console.log(res);
+                    },function(){
+                        console.log('an error ocurred');
+                    })
                 }
                 else{
                     console.log("Form Invalid");

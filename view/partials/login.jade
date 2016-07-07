@@ -1,10 +1,10 @@
 .splash
     h1.splash__title Cafe Connect
     .splash__card
-        form.login__form
+        form.login__form(name='loginForm')
             h1.login__title Ambassador Sign In
-            input.login__field(type="email",placeholder="E-Mail")
-            input.login__field(type="password",placeholder="Password")
+            input.login__field(ng-model='login.email', type="email",placeholder="E-Mail")
+            input.login__field(ng-model='login.password',type="password",placeholder="Password")
             button.login__submit.btn.btn-success Sign In
 .sign-up
     h3.signup__text Don't have an account?

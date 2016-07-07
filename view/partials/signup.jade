@@ -1,13 +1,13 @@
 .container
     .signup
         h1.signup__header Ambassador Registration
-        form.signup__form
+        form.signup__form(name="signupForm")
             .photo
-                video.photo__feed#video(ng-show='user.profilepic === ""', autoplay)
-                img.photo__preview(ng-hide='user.profilepic === ""',ng-src="{{user.profilepic}}")
-            button.photo__button.btn.btn-primary(ng-show='user.profilepic === ""', ng-click="takepic()") Snap Photo
-            button.photo__button.btn.btn-danger(ng-hide='user.profilepic === ""', ng-click='user.profilepic = ""') Retake Photo
-            input.signup__field(placeholder='Name')
-            input.signup__field(placeholder='Email')
-            input.signup__field(placeholder='Password')
-            button.signup__submit.btn.btn-success Sign Up
+                video.photo__feed#video(ng-show='user.profilePicture === ""', autoplay)
+                img.photo__preview(ng-hide='user.profilePicture === ""',ng-src="{{user.profilePicture}}")
+            button.photo__button.btn.btn-primary(ng-show='user.profilePicture === ""', ng-click="takepic()") Snap Photo
+            button.photo__button.btn.btn-danger(ng-hide='user.profilePicture === ""', ng-click='user.profilePicture = ""') Retake Photo
+            input.signup__field(ng-model='user.name' placeholder='Name')
+            input.signup__field(ng-model='user.email' placeholder='Email')
+            input.signup__field(ng-model='user.password' placeholder='Password')
+            button.signup__submit.btn.btn-success(ng-click='submitForm()') Sign Up
