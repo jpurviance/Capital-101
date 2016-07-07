@@ -201,6 +201,7 @@ function Route(warehouse, jobs) {
         email: "email@email.com",
         token: 42,
         password: "password",
+        fb_token: "token"
     }
     * */
     this.auth = function (req, res) {
