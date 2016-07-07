@@ -150,6 +150,7 @@ function Route(warehouse) {
      */
     this.get_user = function (req, res) {
         var body = req.body;
+        console.log(body);
         if (body.token == 42){
             if (valid_get_user(body)){
                 costco.find_by_id(body.user, function (err, doc) {
@@ -193,7 +194,7 @@ module.exports = function(app, Warehouse){
     // app.get('/api/',  route.hello_world);
     
     app.post('/api/user/create', route.new_user);
-    app.get('/api/user/', route.get_user);
+    app.post('/api/user', route.get_user);
 
     app.post('/api/user/auth', route.auth);
 }
