@@ -157,7 +157,8 @@ function Route(warehouse) {
                     if (err){
                         console.log(err);
                         res.status(500);
-                        res.json({status: err});
+                        res.json({status: "INTERNAL_ERR",
+                        error: err});
                     } else {
                         var ret = {
                             status: "NO_ERR",
