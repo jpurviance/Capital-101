@@ -335,6 +335,13 @@ function Route(warehouse, jobs) {
             res.json({user: jaiden});
         })
     }
+
+    this.del_help_by_id = function (req, res) {
+        var body = req.body;
+         var removed = in_line.remove_by_cust_id(body.customer_id);
+        res.json(removed);
+
+    }
 }
 
 
@@ -362,4 +369,5 @@ module.exports = function(app, Warehouse){
     app.post("/api/update_line", route.update_line);
     app.post("/api/get_issue", route.get_issue_by_customer);
     app.get("/api/get_jaiden", route.get_jaiden);
+    app.post("/api/remove_issue", route.del_help_by_id);
 };
