@@ -361,5 +361,5 @@ module.exports = function(app, Warehouse){
     app.post("/api/get_next", route.who_is_next);
     app.post("/api/update_line", route.update_line);
     app.post("/api/get_issue", route.get_issue_by_customer);
-    app.post("/api/get_jaiden", route.get_jaiden);
+    app.get("/api/get_jaiden", route.get_jaiden);
 };
