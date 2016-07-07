@@ -14,7 +14,7 @@ var server = require( 'gulp-develop-server' );
 var options = {
     server: {
         path: './server.js',
-        execArgv: [ "--harmony MONGODB_URI='mongodb://localhost:27017/accts'" ]
+        execArgv: [ "--harmony" ]
     },
     bs: {
         proxy: 'http://localhost:8080'
@@ -67,9 +67,9 @@ gulp.task('babel',['lint'], function () {
 
 
 gulp.task('default',['lint','server:start'], function () {
-    gulp.watch('public/sass/**/*.scss', ['sass']);
+    gulp.watch('public/**/*.scss', ['sass']);
     gulp.watch(['public/**/*.js','!node_modules/**','!bower_components/**','!public/dist/**'], ['babel']);
-    gulp.watch("public/**/*.html").on('change', browserSync.reload);
+    gulp.watch("**/*.jade").on('change', browserSync.reload);
     gulp.watch( [ './server.js','routes/**/*.js','model/**/*.js' ], server.restart );
     gulp.watch( [ './server.js','routes/**/*.js','model/**/*.js' ], server.restart );
 

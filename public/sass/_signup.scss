@@ -1,0 +1,49 @@
+.signup {
+  text-align:center;
+  display: block;
+  &__form{
+    width:100%;
+    max-width:400px;
+    text-align: center;
+    display:inline-block;
+  }
+  &__field {
+    width: 100%;
+    text-align: center;
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+    border: 2px solid;
+    border-radius: 4px;
+    height: 40px;
+    border-color: #cfcccf;
+    font-weight: bold;
+    &:focus {
+      border-color: #018bbb;
+    }
+  }
+  &__submit {
+    height: 45px;
+    width: 60%;
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+.photo{
+  width: 350px;
+  max-width:100%;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 0 auto;
+  &__button{
+    margin: 20px;
+    height:45px;
+  }
+  &__feed{
+    width:100%;
+  }
+  &__preview{
+    width:100%;
+  }
+}
