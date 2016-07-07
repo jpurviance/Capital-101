@@ -19,7 +19,7 @@
     "express": "^4.14.0",
     "jade": "^1.11.0"
   },
-  "scripts" : { "postinstall" : "bower install"
+  "scripts" : { "postinstall" : "./node_modules/bower/bin/bower install"
     },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
