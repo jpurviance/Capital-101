@@ -49,9 +49,10 @@ component('signup', {
                 if ($scope.signupForm.$valid) {
                     $http.post('/api/user/create', {token:42,user:$scope.user}).then(function(res){
                         console.log(res);
+                        $location.path('login');
                     },function(){
                         console.log('an error ocurred');
-                    })
+                    });
                 }
                 else{
                     console.log("Form Invalid");

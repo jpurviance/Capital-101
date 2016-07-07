@@ -23,6 +23,11 @@ function help_me() {
     };
 
     this.get_in_line = function (add_me) {
+        for (var i = 0; i < help.length; i++){
+            if (help[i].customer_id == 108852546216429){
+                return;
+            }
+        }
         help.unshift(add_me);
     };
 
@@ -48,7 +53,7 @@ function help_me() {
             }
         }
         return null;
-    }
+    };
 }
 
 module.exports = help_me;

@@ -1,6 +1,13 @@
 //
    Created by wrk224 on 7/7/16.
 .container
+    header
+        span.header__left
+            a.header__home(href='/')
+                img.header__logo(src="img/logo.png")
+        span.header__right
+            button.header__logout.btn.btn-danger(ng-click='logOut()')
+                i.fa.fa-sign-out.fa-lg
     .appt
         .appt__preview
             .appt__user

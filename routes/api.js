@@ -42,7 +42,7 @@ function Route(warehouse, jobs) {
     function valid_issue(jsn) {
         for (var i = 0; i < new_issue.length; i++){
             if(!(new_issue[i] in jsn)){
-                return false
+                return false;
             }
 
         }
@@ -61,7 +61,7 @@ function Route(warehouse, jobs) {
         if (body.token = 42){
              var issue = in_line.get_by_id(body.customer_id);
             if (issue == null){
-                var err = "issue not found"
+                var err = "issue not found";
                 console.log(err);
                 res.json({status: err});
             }else {
@@ -255,13 +255,14 @@ function Route(warehouse, jobs) {
         if (body.token == 42){
             if (valid_add_user(body.user)) {
                 costco.find_by_email(body.user.email, function (err, doc) {
-                    if (err){
+                    if (err || doc == null){
                         costco.new_person(body.user, function (err, record) {
                             if (err){
                                 console.log(err);
                                 res.status(500);
                                 res.json({status: err});
                             } else {
+
                                 var ret = {
                                     status: "NO_ERR",
                                     user: record
@@ -270,7 +271,6 @@ function Route(warehouse, jobs) {
                             }
                         });
                     } else {
-                        
                         var ret = {
                             status: "NO_ERR",
                             user: doc
@@ -328,7 +328,7 @@ function Route(warehouse, jobs) {
         }
 
 
-    }
+    };
 }
 
 

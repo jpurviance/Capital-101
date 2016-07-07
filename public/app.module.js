@@ -1,7 +1,7 @@
 'use strict';
 
 // Define the `redBeanApp` module
-angular.module('redBeanApp', [
+var app = angular.module('redBeanApp', [
     'ngRoute',
     'login',
     'signup',

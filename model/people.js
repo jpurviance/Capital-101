@@ -51,7 +51,7 @@ var Warehouse = function(){
             callback(err, doc);
 
         });
-    }
+    };
 };
 
 module.exports.connectToServer = connectToServer;
