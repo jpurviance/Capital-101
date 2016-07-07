@@ -1,7 +1,8 @@
 
 
-function Route(warehouse) {
+function Route(warehouse, jobs) {
     var costco = warehouse;
+    var in_lin = jobs;
 
     var new_user = ["name", "email", "password", "profilePicture", "type", "fb_token"];
     var get_user = ["token", "user"];
@@ -55,6 +56,26 @@ function Route(warehouse) {
     //
     // }
 
+
+
+    /*
+    {
+        token: 42
+    }
+    * */
+    this.who_is_next = function (req, res) {
+        var body = req.body;
+        if (body.token == 42){
+            res.json({
+                status: "NO_ERR",
+                line: in_line.get_all()
+            });
+        } else {
+            res.json({
+                status: "NO_AUTH",
+            });
+        }
+    }
 
 
     /* TODO does not support facebook
@@ -185,17 +206,19 @@ function Route(warehouse) {
 module.exports = function(app, Warehouse){
 
 
+    var line =  require("../util/help");
+
     var bodyParser = require("body-parser");
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
         extended: true
     }));
-    var route = new Route(Warehouse);
+    var route = new Route(Warehouse, new line());
 
     // app.get('/api/',  route.hello_world);
     
     app.post('/api/user/create', route.new_user);
     app.post('/api/user', route.get_user);
-
     app.post('/api/user/auth', route.auth);
+    app.post('/api/line', route.who_is_next);
 }
