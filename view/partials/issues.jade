@@ -1,7 +1,16 @@
 .container
+    header
+        span.header__left
+            a.header__home(href='/')
+                .round.round--small
+                    img.user__pic(ng-src='{{user.profilePicture}}')
+             span.header__name {{user.name}}
+        span.header__right
+            button.header__logout.btn.btn-danger(ng-click='logOut()')
+                i.fa.fa-sign-out.fa-lg
     .queue
         h1.queue__title Customers Waiting
-        h3.queue__category General Checking
+        h3.queue__category General Issues
         <hr/>
         .queue__item
             .issue__preview

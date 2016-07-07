@@ -10,9 +10,33 @@ $dark-blue: #112843;
 @import 'issue';
 
 header{
-  text-align:center;
   padding-top:7px;
   padding-bottom: 3px;
+  display:block;
+  width:90%;
+  max-width: 580px;
+  margin: 0 auto;
+  background-color: #E3E3E3;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.header{
+  &__logo{
+    height:60px;
+  }
+  &__right{
+    float:right;
+  }
+  &__logout{
+    height: 55px;
+    width:55px;
+    margin-top:5px;
+  }
+  &__name{
+    font-size: 25px;
+  }
 }
 
 footer{

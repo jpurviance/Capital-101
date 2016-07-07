@@ -8,8 +8,20 @@ angular.
 module('issue').
 component('issue', {
     templateUrl: 'partials/issue',
-    controller: ['$scope','$location','$http','$routeParams',
-        function issueController($scope,$location,$http,$routeParams) {
+    controller: ['$scope','$location','$http','$routeParams','$cacheFactory',
+        function issueController($scope,$location,$http,$routeParams,$cacheFactory) {
+            if(!$cacheFactory.get('session')){
+                $scope.cache = $cacheFactory('session');
+            }
+            else {
+                $scope.cache = $cacheFactory.get('session');
+            }
+            if(!$scope.cache.get("user")){
+                $location.path('login');
+            }
+            $scope.logOut = function () {
+                $scope.cache.put("user",null);
+            }
             $scope.issue = {id:$routeParams.issueId};
         }
     ]

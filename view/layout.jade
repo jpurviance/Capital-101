@@ -16,6 +16,8 @@ html(ng-app="redBeanApp")
 
         script(src="dist/app.module.js")
         script(src="dist/app.config.js")
+        script(src="https://use.fontawesome.com/57914866af.js")
+
         each comp in ['login','signup','issues','issue']
             script(src="dist/"+comp+"/"+comp+".module.js")
             script(src="dist/"+comp+"/"+comp+".component.js")
