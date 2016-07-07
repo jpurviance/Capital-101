@@ -47,7 +47,7 @@ var Warehouse = function(){
 
     this.new_person = function (doc, callback) {
         var p = new person(doc);
-        p.save(function (err, doc){} {
+        p.save(function (err, doc) {
             callback(err, doc);
 
         });
