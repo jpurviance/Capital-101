@@ -115,7 +115,7 @@ function Route(warehouse, jobs) {
             });
         } else {
             res.json({
-                status: "NO_AUTH",
+                status: "NO_AUTH"
             });
         }
     }
