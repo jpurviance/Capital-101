@@ -1,5 +1,16 @@
 .container
-    .h1 Customers in need of assistance
-    h3.queue__title General Checking
-    <hr/>
-    .queue__list
+    .queue
+        h1.queue__title Customers Waiting
+        h3.queue__category General Checking
+        <hr/>
+        .queue__item
+            .issue__preview
+                span.issue__user
+                    .round
+                        img.user__pic(src='img/default.jpg')
+                    span.user__name Jaiden Gerig
+                span.issue__date 05/13/16
+            .issue__body
+                p.issue_detail I need help with my grandson and the other millenials
+                .text-center
+                    button.issue__help.btn.btn-success Assist
