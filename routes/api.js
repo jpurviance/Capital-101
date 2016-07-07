@@ -255,13 +255,14 @@ function Route(warehouse, jobs) {
         if (body.token == 42){
             if (valid_add_user(body.user)) {
                 costco.find_by_email(body.user.email, function (err, doc) {
-                    if (err){
+                    if (err || doc == null){
                         costco.new_person(body.user, function (err, record) {
                             if (err){
                                 console.log(err);
                                 res.status(500);
                                 res.json({status: err});
                             } else {
+
                                 var ret = {
                                     status: "NO_ERR",
                                     user: record
@@ -270,6 +271,8 @@ function Route(warehouse, jobs) {
                             }
                         });
                     } else {
+                        console.log()
+                        console.log("here");
                         var ret = {
                             status: "NO_ERR",
                             user: doc
