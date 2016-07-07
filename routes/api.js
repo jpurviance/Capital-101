@@ -67,7 +67,7 @@ function Route(warehouse, jobs) {
             }else {
                 var ret = {
                     status: "NO_ERR",
-                    issue: doc
+                    issue: issue
                 };
                 res.json(ret);
 
