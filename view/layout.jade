@@ -4,14 +4,20 @@ html(ng-app="redBeanApp")
         meta(charset='utf8')
         base(href='/')
         title Angular Express Seed App
-        link(rel='stylesheet', href='/css/app.css')
+        link(rel='stylesheet', href='static/bootstrap/dist/css/bootstrap.min.css')
+
+        link(rel='stylesheet', href='dist/css/global.css')
+
+
         script(src='static/angular/angular.js')
         script(src='static/angular-route/angular-route.js')
         script(src='static/angular-resource/angular-resource.js')
 
+
         script(src="dist/app.module.js")
         script(src="dist/app.config.js")
-        script(src="dist/login/login.module.js")
-        script(src="dist/login/login.component.js")
+        each comp in ['login','signup']
+            script(src="dist/"+comp+"/"+comp+".module.js")
+            script(src="dist/"+comp+"/"+comp+".component.js")
     body
 block body

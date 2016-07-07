@@ -1,0 +1,65 @@
+.splash{
+  @include background('../../img/splash.jpg');
+  text-align:center;
+  padding-top:20px;
+  &__title{
+    margin-top:0px;
+    padding-top:20px;
+    text-align: center;
+    color:$white;
+    font-weight: bold;
+  }
+  &__card{
+    width: 90%;
+    max-width:400px;
+    background-color:$white;
+    display:inline-block;
+    border-radius:3px;
+    padding:20px;
+    margin-top:50px;
+    margin-bottom:70px;
+  }
+}
+.login{
+  padding:10px;
+  &__title{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color:$black;
+    margin:0px;
+    margin-bottom: 25px;
+    margin-top:7px;
+  }
+  &__field{
+    width: 100%;
+    text-align:center;
+    display:block;
+    padding-left:10px;
+    padding-right:10px;
+    margin-bottom:20px;
+    border:2px solid;
+    border-radius:4px;
+    height:40px;
+    border-color:#cfcccf;
+    font-weight:bold;
+    &:focus{
+      border-color:#018bbb;
+    }
+  }
+  &__submit{
+    height:45px;
+    width:60%;
+    font-weight:bold;
+    font-size: 16px;
+  }
+}
+
+.sign-up{
+  font-size:1.5em;
+  text-align:center;
+  padding-top: 15px;
+  &__link{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+  }
+}

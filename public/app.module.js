@@ -3,5 +3,6 @@
 // Define the `secureUploadApp` module
 angular.module('redBeanApp', [
     'ngRoute',
-    'login'
+    'login',
+    'signup'
 ]);

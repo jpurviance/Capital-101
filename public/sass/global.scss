@@ -1,0 +1,19 @@
+$white: #fff;
+$black: #4A494A;
+$light-grey: #C8C8C8;
+$dark-blue: #112843;
+
+@import 'mixins';
+@import 'login';
+@import 'signup';
+
+header{
+  text-align:center;
+  padding-top:7px;
+  padding-bottom: 3px;
+}
+
+footer{
+  margin-left: 15px;
+  margin-right:15px;
+}
