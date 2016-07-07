@@ -50,6 +50,32 @@ function Route(warehouse, jobs) {
     }
 
 
+    /*
+    {
+        token: 42,
+        ambassador_id: "id"
+    }
+    * */
+    this.get_issue_by_customer = function (req, res) {
+        var body = req.body;
+        if (body.token = 42){
+            var ret = {
+                status: "NO_ERR",
+                issue: costco.get_by_id()
+            }
+        } else {
+            res.json({
+                status: "NO_AUTH"
+            });
+        }
+
+    };
+
+    /*
+    {
+        token: 42
+    }
+    * */
     this.who_is_next = function (req, res) {
         var body = req.body;
         if (body.token == 42){
@@ -164,7 +190,7 @@ function Route(warehouse, jobs) {
 
     /* TODO does not support facebook
     {
-        user: "username",
+        email: "email@email.com",
         token: 42,
         password: "password",
     }
@@ -173,7 +199,7 @@ function Route(warehouse, jobs) {
         var body = req.body;
         if (body.token == 42){
             if (valid_auth(body)){
-                costco.find_by_username(body.user, function (err, doc) {
+                costco.find_by_email(body.email, function (err, doc) {
                     if (err){
                         console.log(err);
                         res.status(500);
@@ -309,4 +335,5 @@ module.exports = function(app, Warehouse){
     app.post("/api/add_issue", route.add_to_line);
     app.post("/api/get_next", route.who_is_next);
     app.post("/api/update_line", route.update_line);
+    app.post("/api/get_issue", route.get_issue_by_customer);
 }
