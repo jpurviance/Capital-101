@@ -11,7 +11,7 @@ function Route(warehouse, jobs) {
     
     function valid_add_user(jsn) {
         for (var i = 0; i < new_user.length; i++){
-            if (!new_user[i] in jsn){
+            if (!(new_user[i] in jsn)){
                 return false;
             }
         }
@@ -21,7 +21,7 @@ function Route(warehouse, jobs) {
 
     function valid_get_user(jsn) {
         for (var i = 0; i < get_user.length; i++){
-            if (! get_user[i] in jsn){
+            if (!(get_user[i] in jsn)){
                 return false;
             }
 
@@ -31,7 +31,7 @@ function Route(warehouse, jobs) {
 
     function valid_auth(jsn) {
         for (var i = 0; i < auth_user.length; i++){
-            if (!auth_user[i] in jsn){
+            if (!(auth_user[i] in jsn)){
                 return false;
             }
         }
@@ -41,7 +41,7 @@ function Route(warehouse, jobs) {
 
     function valid_issue(jsn) {
         for (var i = 0; i < new_issue.length; i++){
-            if(!new_issue[i] in jsn){
+            if(!(new_issue[i] in jsn)){
                 return false
             }
 
