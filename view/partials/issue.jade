@@ -4,7 +4,9 @@
     header
         span.header__left
             a.header__home(href='/')
-                img.header__logo(src="img/logo.png")
+                .round.round--small
+                    img.user__pic(ng-src='{{user.profilePicture}}')
+            span.header__name {{user.name}}
         span.header__right
             button.header__logout.btn.btn-danger(ng-click='logOut()')
                 i.fa.fa-sign-out.fa-lg
@@ -12,12 +14,12 @@
         .appt__preview
             .appt__user
                 .round.user__pic.user__pic--center
-                    img(src='img/default.jpg')
-                .user__name.user__name--big Jaiden Gerig
-            .appt__category Checking
+                    img(ng-src='{{customer.profilePicture}}')
+                .user__name.user__name--big {{customer.name}}
+            .appt__category General
         .appt__body
-            p.appt__detail Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lobortis quam quis turpis viverra luctus a ut odio. Integer quis felis vitae nulla laoreet vulputate et sit amet dolor. Praesent venenatis lectus id interdum maximus. Nulla facilisi. Nam nec nunc nisl. Vestibulum sed mi sit amet massa finibus congue. Pellentesque in risus libero. Nullam in magna arcu. Quisque at quam nisi. Pellentesque nec tristique ipsum. Integer vitae magna nisi. Maecenas efficitur vel libero quis maximus.
+            p.appt__detail {{issue.info}}
             h3 Notes
-            textarea.form-control.appt__notes(rows="5")
+            textarea.form-control.appt__notes(rows="5",ng-model='issue.notes')
             .text-center
-                button.appt__resolve.btn.btn-success Resolved
+                button.appt__resolve.btn.btn-success(ng-click='resolve()') Resolved

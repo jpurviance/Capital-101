@@ -209,7 +209,7 @@ function Route(warehouse, jobs) {
         if (body.token == 42){
             if (valid_auth(body)){
                 costco.find_by_email(body.email, function (err, doc) {
-                    if (err){
+                    if (err || doc == null){
                         console.log(err);
                         res.status(500);
                         res.json({status: "BAD_AUTH"});
@@ -333,15 +333,15 @@ function Route(warehouse, jobs) {
     this.get_jaiden = function (req, res) {
         costco.find_by_email("jaideng123@yahoo.com", function (err, jaiden) {
             res.json({user: jaiden});
-        })
-    }
+        });
+    };
 
     this.del_help_by_id = function (req, res) {
         var body = req.body;
          var removed = in_line.remove_by_cust_id(body.customer_id);
         res.json(removed);
 
-    }
+    };
 }
 
 

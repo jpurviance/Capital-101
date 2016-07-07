@@ -59,11 +59,11 @@ function help_me() {
         for (var i = 0; i < help.lenght; i++){}
         if (help[i].customer_id == id){
             var temp = help[i];
-            array.splice(i, 1);
+            help.splice(i, 1);
             return temp;
         }
         return null;
-    }
+    };
 }
 
 module.exports = help_me;

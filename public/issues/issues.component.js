@@ -8,6 +8,7 @@ component('issues', {
     controller: ['$scope','$location','$http','$cacheFactory',
         function issuesController($scope,$location,$http,$cacheFactory) {
             $scope.tickets = [];
+            $scope.reals = [];
             if(!$cacheFactory.get('session')){
                 $scope.cache = $cacheFactory('session');
             }
@@ -21,14 +22,17 @@ component('issues', {
             $http.post('/api/line', {token:42}).then(function(res){
                 $scope.tickets = res.data.line;
                 console.log($scope.tickets);
-                for(let i=0;i<$scope.tickets.length;++i){
-                    $http.post('/api/line', {token:42,user:$scope.tickets[i].customer_id}).then(function(res){
-                        $scope.tickets[i].customer = res.data.user;
+                angular.forEach($scope.tickets,function(value){
+                    var x = this;
+                    $http.post('/api/user', {token:42,user:value.customer_id}).then(function(res){
+                        console.log(res);
+                        value.customer = res.data.user;
+                        $scope.reals.push(value);
                     },function(res){
                         console.log('an error ocurred');
                         console.log(res);
                     });
-                }
+                });
             },function(res){
                 console.log('an error ocurred');
                 console.log(res);
@@ -37,6 +41,9 @@ component('issues', {
                 console.log("Logging Out");
                 $scope.cache.put("user",null);
                 $location.path('login');
+            };
+            $scope.openIssue = function(issue){
+                    $location.path('issue/' + issue.customer_id);
             };
             $scope.issues = {};
             console.log('LOADED');
