@@ -6,7 +6,7 @@ function Route(warehouse, jobs) {
 
     var new_user = ["name", "email", "password", "profilePicture", "type", "fb_token"];
     var get_user = ["token", "user"];
-    var auth_user = ["email", "password", "fb_token"];
+    var auth_user = ["email", "password"];
     var new_issue = ["type", "customer_id", "ambassador_id", "finished", "rating", "notes"];
     
     function valid_add_user(jsn) {
@@ -200,8 +200,7 @@ function Route(warehouse, jobs) {
     {
         email: "email@email.com",
         token: 42,
-        password: "password",
-        fb_token: "token"
+        password: "password"
     }
     * */
     this.auth = function (req, res) {

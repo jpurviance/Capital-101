@@ -35,8 +35,8 @@ var Warehouse = function(){
         });
     };
 
-    this.find_by_id = function (user, callback) {
-        person.findById(user._id, function (err, docs) {
+    this.find_by_id = function (id, callback) {
+        person.findById(id, function (err, docs) {
             return callback(err, docs);
         });
     };
