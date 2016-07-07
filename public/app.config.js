@@ -13,6 +13,12 @@ config(['$locationProvider' ,'$routeProvider',
         when('/signup', {
             template: '<signup></signup>'
         }).
+        when('/issues', {
+            template: '<issues></issues>'
+        }).
+        when('/issue/:issueId', {
+            template: '<issue></issue>'
+        }).
         otherwise('/login');
     }
 ]);

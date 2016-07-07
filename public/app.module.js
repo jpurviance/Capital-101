@@ -1,8 +1,10 @@
 'use strict';
 
-// Define the `secureUploadApp` module
+// Define the `redBeanApp` module
 angular.module('redBeanApp', [
     'ngRoute',
     'login',
-    'signup'
+    'signup',
+    'issues',
+    'issue'
 ]);
