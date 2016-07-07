@@ -53,7 +53,7 @@ function Route(warehouse, jobs) {
     /*
     {
         token: 42,
-        ambassador_id: "id"
+        customer_id: "id"
     }
     * */
     this.get_issue_by_customer = function (req, res) {
@@ -62,7 +62,8 @@ function Route(warehouse, jobs) {
             var ret = {
                 status: "NO_ERR",
                 issue: costco.get_by_id()
-            }
+            };
+            res.json(ret);
         } else {
             res.json({
                 status: "NO_AUTH"
@@ -82,11 +83,11 @@ function Route(warehouse, jobs) {
             var ret = {
                 status:"NO_ERR",
                 help: in_line.get_next()
-            }
+            };
             res.json(ret);
         } else {
             res.json({
-                status: "NO_AUTH",
+                status: "NO_AUTH"
             });
         }
     };
@@ -126,7 +127,7 @@ function Route(warehouse, jobs) {
             }
         } else {
             res.json({
-                status: "NO_AUTH",
+                status: "NO_AUTH"
             });
         }
     };
@@ -162,7 +163,7 @@ function Route(warehouse, jobs) {
             }
         } else {
             res.json({
-                status: "NO_AUTH",
+                status: "NO_AUTH"
             });
         }
     };
@@ -208,7 +209,7 @@ function Route(warehouse, jobs) {
                         if (doc.password == body.password){
                             var ret = {
                                 status: "NO_ERR",
-                                user: doc,
+                                user: doc
                             };
                             res.json(ret);
                         } else {
@@ -222,7 +223,7 @@ function Route(warehouse, jobs) {
             }
         } else {
             res.json({
-                status: "NO_AUTH",
+                status: "NO_AUTH"
             });
         }
     };
@@ -246,7 +247,7 @@ function Route(warehouse, jobs) {
         var body = req.body;
         if (body.token == 42){
             if (valid_add_user(body.user)) {
-                ostco.find_by_email(body.user.email, function (err, doc) {
+                costco.find_by_email(body.user.email, function (err, doc) {
                     if (err){
                         costco.new_person(body.user, function (err, record) {
                             if (err){
@@ -257,14 +258,14 @@ function Route(warehouse, jobs) {
                                 var ret = {
                                     status: "NO_ERR",
                                     user: record
-                                }
+                                };
                                 res.json(ret);
                             }
                         });
                     } else {
                         var ret = {
                             status: "NO_ERR",
-                            user: doc,
+                            user: doc
                         };
                         res.json(ret);
                     }
@@ -275,7 +276,7 @@ function Route(warehouse, jobs) {
             }
         } else {
             res.json({
-                status: "NO_AUTH",
+                status: "NO_AUTH"
             });
         }
     };
@@ -304,7 +305,7 @@ function Route(warehouse, jobs) {
                         var ret = {
                             status: "NO_ERR",
                             user: doc
-                        }
+                        };
                         res.json(ret);
                     }
                 });
@@ -314,7 +315,7 @@ function Route(warehouse, jobs) {
             }
         } else {
             res.json({
-                status: "NO_AUTH",
+                status: "NO_AUTH"
             });
         }
 
@@ -326,7 +327,7 @@ function Route(warehouse, jobs) {
 module.exports = function(app, Warehouse){
 
 
-    var line =  require("../util/help");
+    var Line =  require("../util/help");
 
     var bodyParser = require("body-parser");
 
@@ -335,7 +336,7 @@ module.exports = function(app, Warehouse){
         limit: '300mb',
         extended: true
     }));
-    var route = new Route(Warehouse, new line());
+    var route = new Route(Warehouse, new Line());
 
     
     app.post('/api/user/create', route.new_user);
@@ -346,4 +347,4 @@ module.exports = function(app, Warehouse){
     app.post("/api/get_next", route.who_is_next);
     app.post("/api/update_line", route.update_line);
     app.post("/api/get_issue", route.get_issue_by_customer);
-}
+};
