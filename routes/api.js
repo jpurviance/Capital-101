@@ -4,7 +4,7 @@ function Route(warehouse, jobs) {
     var costco = warehouse;
     var in_line = jobs;
 
-    var new_user = ["name", "email", "password", "profilePicture", "type", "fb_token"];
+    var new_user = ["name", "email", "password", "profilePicture", "type"]; // TODO do not have fb user
     var get_user = ["token", "user"];
     var auth_user = ["email", "password"];
     var new_issue = ["type", "customer_id", "ambassador_id", "finished", "rating", "notes"];
@@ -245,8 +245,7 @@ function Route(warehouse, jobs) {
             email: "my_email@email.com",
             password: "my_secret_password",
             profilePicture: "url",
-            type: "type",
-            fb_token: "token"
+            type: "type"
             }
         }
     }
