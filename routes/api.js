@@ -7,7 +7,7 @@ function Route(warehouse, jobs) {
     var new_user = ["name", "email", "password", "profilePicture", "type", "fb_token"];
     var get_user = ["token", "user"];
     var auth_user = ["email", "password", "fb_token"];
-    var new_issue = ["type", "customer", "ambassador", "finished", "rating", "notes"];
+    var new_issue = ["type", "customer_id", "ambassador_id", "finished", "rating", "notes"];
     
     function valid_add_user(jsn) {
         for (var i = 0; i < new_user.length; i++){
