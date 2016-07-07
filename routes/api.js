@@ -150,7 +150,7 @@ function Route(warehouse) {
      */
     this.get_user = function (req, res) {
         var body = req.body;
-        if (body.token){
+        if (body.token == 42){
             if (valid_get_user(body)){
                 costco.find_by_id(body.user, function (err, doc) {
                     if (err){
