@@ -1,12 +1,14 @@
 function help_me() {
 
-    //{type:"Checking",
-    // info:"My Grandson says i need one a them credit cards",
-    // customer_id:25,
-    // ambassador_id:37,
-    // finished:false,
-    // rating:3,
-    // notes:"Needed a credit card"}
+    /*{
+        type:"Checking",
+        info:"My Grandson says i need one a them credit cards",
+        customer_id:25,
+        ambassador_id:37,
+        finished:false,
+        rating:3,
+        notes:"Needed a credit card"
+    } */
 
 
     var help = [];
@@ -30,7 +32,7 @@ function help_me() {
 
     this.update_issue = function (iss) {
         for (var i = 0; i < help.length; i++){
-            if (help[i] == iss.customer_id){
+            if (help[i].customer_id == iss.customer_id){
                 help[i] = iss;
                 return true;
             }
@@ -38,6 +40,15 @@ function help_me() {
         return false;
 
     };
+
+    this.get_by_id = function (id) {
+        for (var i = 0; i < help.length; i++){
+            if (help[i].customer_id ==id ){
+                return help[i];
+            }
+        }
+        return null;
+    }
 }
 
 module.exports = help_me;
