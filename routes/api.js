@@ -59,7 +59,7 @@ function Route(warehouse, jobs) {
     this.get_issue_by_customer = function (req, res) {
         var body = req.body;
         if (body.token = 42){
-            costco.find_by_id(body.customer_id, function (err, doc) {
+            in_line.get_by_id(body.customer_id, function (err, doc) {
                 if (err){
                     console.log(err);
                     res.json({status: err});
